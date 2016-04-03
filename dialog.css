@@ -1,0 +1,137 @@
+.dialog-wrapper {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    text-align: center;
+    background-color: rgba(0,0,0,0.4);
+    overflow: hidden;
+}
+
+.dialog-wrapper * {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+.dialog-docker {
+    position: absolute;
+    visibility: hidden;
+}
+
+.dialog-docker-p0 {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.dialog {
+    margin: 0 auto;
+    color: #000;
+    background-color: #fff;
+    border: 32px solid #eee;
+    visibility: visible;
+}
+
+.dialog-docker-p1 {
+    top: 0;
+    left: 0;
+}
+.dialog-docker-p2 {
+    top: 0;
+    left: 50%;
+}
+.dialog-docker-p3 {
+    top: 0;
+    right: 0;
+}
+.dialog-docker-p4 {
+    top: 50%;
+    left: 0;
+}
+.dialog-docker-p5 {
+    top: 50%;
+    left: 50%;
+}
+.dialog-docker-p6 {
+    top: 50%;
+    right: 0;
+}
+.dialog-docker-p7 {
+    bottom: 0;
+    left: 0;
+}
+.dialog-docker-p8 {
+    bottom: 0;
+    left: 50%;
+}
+.dialog-docker-p9 {
+    bottom: 0;
+    right: 0;
+}
+
+.dialog-docker-p0 .dialog {
+    margin: 0;
+    border: 0;
+}
+.dialog-docker-p1 .dialog {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.dialog-docker-p2 .dialog {
+    position: absolute;
+    top: 0;
+    left: -50%;
+}
+.dialog-docker-p3 .dialog {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.dialog-docker-p4 .dialog {
+    position: absolute;
+    top: -50%;
+    left: 0;
+}
+.dialog-docker-p5 .dialog {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+}
+.dialog-docker-p6 .dialog {
+    position: absolute;
+    top: -50%;
+    right: 0;
+}
+.dialog-docker-p7 .dialog {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.dialog-docker-p8 .dialog {
+    position: absolute;
+    bottom: 0;
+    left: -50%;
+}
+.dialog-docker-p9 .dialog {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.dialog-header {}
+
+.dialog-btn-close {}
+
+.dialog-content {}
+
+.dialog-btn {}
+
+.dialog-footer {}
