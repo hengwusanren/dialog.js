@@ -33,7 +33,7 @@
         }
     </style>
 
-    <script type="text/javascript" src="./dialog.js"></script>
+    <script type="text/javascript" src="./lib/dialog.js"></script>
 </head>
 
 <body>
@@ -62,11 +62,15 @@
         <div></div>
         <div></div>
     </div>
+    <div id="dialogframe"></div>
 
     <script type="text/javascript">
+        //Dialog.Init(null, './lib/dialog.css');
+        Dialog.Init(document.getElementById('dialogframe'), './lib/dialog.css');
+
         document.getElementById('btn0').onclick = function() {
             // 全屏
-            Dialogger.Create({
+            Dialog.Create({
                 content: 'This is a ' + this.innerText + ' dialog.',
                 autoShow: 1,
                 fullscreen: 1
@@ -74,7 +78,7 @@
         };
         document.getElementById('btn1').onclick = function() {
             // 左上
-            Dialogger.Create({
+            Dialog.Create({
                 content: 'This is a ' + this.innerText + ' dialog.',
                 autoShow: 1,
                 position: 1,
@@ -84,7 +88,7 @@
         };
         document.getElementById('btn2').onclick = function() {
             // 中上
-            Dialogger.Create({
+            Dialog.Create({
                 content: 'This is a ' + this.innerText + ' dialog.',
                 autoShow: 1,
                 position: 2,
@@ -94,7 +98,7 @@
         };
         document.getElementById('btn3').onclick = function() {
             // 右上
-            Dialogger.Create({
+            Dialog.Create({
                 content: 'This is a ' + this.innerText + ' dialog.',
                 autoShow: 1,
                 position: 3,
@@ -108,7 +112,7 @@
         };
         document.getElementById('btn4').onclick = function() {
             // 左中
-            Dialogger.Create({
+            Dialog.Create({
                 content: 'This is a ' + this.innerText + ' dialog.',
                 autoShow: 1,
                 position: 4,
@@ -118,7 +122,7 @@
         };
         document.getElementById('btn5').onclick = function() {
             // 中中
-            Dialogger.Create({
+            Dialog.Create({
                 content: 'This is a ' + this.innerText + ' dialog.',
                 autoShow: 1,
                 position: 5,
@@ -131,7 +135,7 @@
         };
         document.getElementById('btn6').onclick = function() {
             // 右中
-            Dialogger.Create({
+            Dialog.Create({
                 content: 'This is a ' + this.innerText + ' dialog.',
                 autoShow: 1,
                 position: 6,
@@ -142,7 +146,7 @@
         };
         document.getElementById('btn7').onclick = function() {
             // 左下
-            Dialogger.Create({
+            Dialog.Create({
                 content: 'This is a ' + this.innerText + ' dialog.',
                 autoShow: 1,
                 position: 7,
@@ -152,7 +156,7 @@
         };
         document.getElementById('btn8').onclick = function() {
             // 中下
-            Dialogger.Create({
+            Dialog.Create({
                 content: 'This is a ' + this.innerText + ' dialog.',
                 autoShow: 1,
                 position: 8,
@@ -161,7 +165,7 @@
         };
         document.getElementById('btn9').onclick = function() {
             // 右下
-            Dialogger.Create({
+            Dialog.Create({
                 content: 'This is a ' + this.innerText + ' dialog.',
                 autoShow: 1,
                 position: 9,
@@ -171,7 +175,7 @@
         };
         document.getElementById('btn10').onclick = function() {
             // 常驻（不销毁）
-            window.dialog1 = new Dialogger({
+            window.dialog1 = new Dialog({
                 content: 'This is a ' + this.innerText + ' dialog.',
                 stay: 1
             });
@@ -179,7 +183,7 @@
         };
         document.getElementById('btn11').onclick = function() {
             // 无遮罩，创建即显示，点击不关闭
-            window.dialog2 = Dialogger.Create({
+            window.dialog2 = Dialog.Create({
                 content: 'This is a ' + this.innerText + ' dialog.',
                 block: 1,
                 autoShow: 1,
@@ -192,11 +196,11 @@
         };
         document.getElementById('btn12').onclick = function() {
             // 简单提示
-            Dialogger.Alert('a pop-up dialog');
+            Dialog.Alert('a pop-up dialog');
         };
         document.getElementById('btn13').onclick = function() {
             // 中间带
-            Dialogger.Create({
+            Dialog.Create({
                 content: 'This is a ' + this.innerText + ' dialog.',
                 autoShow: 1,
                 position: 5,
@@ -205,7 +209,7 @@
         };
         document.getElementById('btn14').onclick = function() {
             // 中上，定 top
-            Dialogger.Create({
+            Dialog.Create({
                 content: 'This is a ' + this.innerText + ' dialog.',
                 autoShow: 1,
                 position: 2,

@@ -46,66 +46,10 @@
     }
 })();
 
-
-/****************
- * 辅助函数：轻量级模板引擎
- * 参考 http://krasimirtsonev.com/blog/article/Javascript-template-engine-in-just-20-line
- ****************/
-var templateEngine = function(html, options) {
-    var re = /{([^}]+)?}/g,
-        reExp = /(^( )?(if|for|else|switch|case|break|{|}))(.*)?/g,
-        code = 'var r=[];\n',
-        cursor = 0,
-        match;
-    var add = function(line, js) {
-        js ? (code += line.match(reExp) ? line + '\n' : 'r.push(' +
-                line + ');\n') :
-            (code += line != '' ? 'r.push("' + line.replace(/"/g, '\\"') +
-                '");\n' : '');
-        return add;
-    };
-    while (match = re.exec(html)) {
-        //console.log(match[1]);
-        add(html.slice(cursor, match.index))('this.' + match[1], true);
-        cursor = match.index + match[0].length;
-    }
-    add(html.substr(cursor, html.length - cursor));
-    code += 'return r.join("");';
-    return new Function(code.replace(/[\r\t\n]/g, '')).apply(options);
-};
-
-/****************
- * 辅助函数：获取元素的样式值
- * 参考 Jquery 作者 John Resig
- ****************/
-var getStyle = function(el, name, doc) {
-    var _document = doc || document;
-    nameWords = name.split('-');
-    for (var i = 1, len = nameWords.length; i < len; i++) {
-        if (!nameWords[i].length) continue;
-        nameWords[i] = nameWords[i].charAt(0).toUpperCase() + nameWords[i].substr(1);
-    }
-    name = nameWords.join('');
-
-    if (el.style[name]) {
-        return el.style[name];
-    } else if (el.currentStyle) {
-        return el.currentStyle[name];
-    } else if (_document.defaultView && _document.defaultView.getComputedStyle) {
-        name = name.replace(/([A-Z])/g, '-$1');
-        name = name.toLowerCase();
-        var s = _document.defaultView.getComputedStyle(el, '');
-        return s && s.getPropertyValue(name);
-    } else {
-        return null;
-    }
-};
-
-
 /****************
  * Dialog 类
  ****************/
-var Dialogger = (function(te, gs) {
+var Dialog = (function() {
     var Dialog = function(conf) {
         this.constructor = Dialog;
         this.id = 'Dialog_' + (new Date().getTime()).toString(); // 时间戳
@@ -127,6 +71,7 @@ var Dialogger = (function(te, gs) {
         this.bottom = conf.bottom || 0;
         this.left = conf.left || 0;
         this.withBorder = !!conf.withBorder; // 是否停靠时也显示边框
+        this.parentEl = conf.container || document.body;
 
         // dom 缓存
         this.wrapper = null; // the wrapper node
@@ -138,7 +83,7 @@ var Dialogger = (function(te, gs) {
         this._frameVisible = this.constructor.Visible();
         this._htmlVisible = document.documentElement.style.overflow;
 
-        this.doc = this.constructor.FrameDoc();
+        this.doc = this.constructor.FrameDoc(this.parentEl);
 
         if (!!conf.autoShow) this.show(); // 创建即显示
     };
@@ -148,7 +93,7 @@ var Dialogger = (function(te, gs) {
                 .id);
 
             el.onclick = (function(event) {
-                event = event ? event : this.constructor.FrameWindow().event;
+                event = event ? event : this.constructor.FrameWin().event;
 
                 var obj = event.srcElement ? event.srcElement : event.target;
                 if (obj.className.indexOf(
@@ -359,7 +304,6 @@ var Dialogger = (function(te, gs) {
      ****************/
     Dialog.WrapClassName = 'dialog-wrapper';
     Dialog.MainClassName = 'dialog';
-    Dialog.TemplateEngine = te;
     /*
      * getElementsByClassName 兼容
      * Developed by Robert Nyman, http://www.robertnyman.com
@@ -440,23 +384,24 @@ var Dialogger = (function(te, gs) {
         return _getElementsByClassName(className, tag, elm, doc);
     };
     Dialog._FrameId = null;
-    Dialog.FrameWindow = function() {
+    Dialog.FrameWin = function() {
         var iframe = document.getElementById(this._FrameId);
         return iframe.contentWindow || iframe;
     };
-    Dialog.FrameDoc = function() {
-        var iframe = null,
-            doc = null;
+    Dialog.FrameDoc = function(parentEl, cssPath) {
+        if(!(parentEl||document.body)) return null;
+        var doc = null;
         if (!this._FrameId) {
             this._FrameId = 'DialogFrame_' + (new Date().getTime()).toString(); // 时间戳
             
-            iframe = document.createElement('iframe');
+            var iframe = document.createElement('iframe');
+            iframe.id = this._FrameId;
             iframe.setAttribute('frameBorder', '0');
             iframe.setAttribute('scrolling', 'no');
             iframe.setAttribute('width', '100%');
             iframe.setAttribute('allowTransparency', 'true');
-            iframe.id = this._FrameId;
-            document.body.appendChild(iframe);
+            (parentEl||document.body).appendChild(iframe);
+
             iframe.style.position = 'fixed';
             iframe.style.top = '0';
             iframe.style.left = '0';
@@ -470,7 +415,7 @@ var Dialogger = (function(te, gs) {
             iframe.style.visibility = 'hidden';
 
             iframe.onLoad = function() {
-                console.log('iframe loaded');
+                console.log('iframe for dialog loaded');
             };
 
             doc = iframe.contentDocument || document.frames[this._FrameId].document;
@@ -480,7 +425,7 @@ var Dialogger = (function(te, gs) {
 
             // css
             var cssLink = document.createElement('link');
-            cssLink.href = './dialog.css';
+            cssLink.href = cssPath || './dialog.css';
             cssLink.rel = 'stylesheet';
             cssLink.type = 'text/css';
             head.appendChild(cssLink);
@@ -501,14 +446,40 @@ var Dialogger = (function(te, gs) {
                     iframe.src = "javascript:void((function(){document.open();document.domain='" + document.domain + "';})())";
                 }
             }
-        } else {
+        } else { // 创建了 iframe 就不移动了，parentEl 变化也不起作用
             doc = document.getElementById(this._FrameId).contentDocument || document.frames[this._FrameId].document;
         }
         return doc;
     };
     Dialog.Template =
         '<div id="{id}" class="dialog-wrapper"><div class="dialog-docker"><div class="dialog">{content}</div></div></div>';
-    Dialog.GetStyle = gs;
+
+    /****************
+     * 辅助函数：获取元素的样式值
+     * 参考 Jquery 作者 John Resig
+     ****************/
+    Dialog.GetStyle = function(el, name, doc) {
+        var _document = doc || document;
+        nameWords = name.split('-');
+        for (var i = 1, len = nameWords.length; i < len; i++) {
+            if (!nameWords[i].length) continue;
+            nameWords[i] = nameWords[i].charAt(0).toUpperCase() + nameWords[i].substr(1);
+        }
+        name = nameWords.join('');
+
+        if (el.style[name]) {
+            return el.style[name];
+        } else if (el.currentStyle) {
+            return el.currentStyle[name];
+        } else if (_document.defaultView && _document.defaultView.getComputedStyle) {
+            name = name.replace(/([A-Z])/g, '-$1');
+            name = name.toLowerCase();
+            var s = _document.defaultView.getComputedStyle(el, '');
+            return s && s.getPropertyValue(name);
+        } else {
+            return null;
+        }
+    };
     Dialog.Create = function(conf) {
         return new(this)(conf);
     };
@@ -524,18 +495,23 @@ var Dialogger = (function(te, gs) {
             content: text
         })).show();
     };
-    Dialog.Init = function() {
-        return this.FrameDoc();
+    Dialog.Init = function(parentEl, cssPath) {
+        if (document.readyState === 'complete')
+            this.FrameDoc(parentEl, cssPath);
+
+        (function(dlg, p, s){
+            var initFunc = function() {
+                dlg.FrameDoc(p, s);
+            };
+            if (window.addEventListener)
+                window.addEventListener('load', initFunc, false);
+            else if (window.attachEvent)
+                window.attachEvent('onload', initFunc);
+            else window.onload = initFunc;
+
+            console.log('event bind');
+        })(this, parentEl, cssPath);
     };
-
-    (function() {
-        if (window.addEventListener)
-            window.addEventListener('load', Dialog.Init.bind(Dialog), false);
-        else if (window.attachEvent)
-            window.attachEvent('onload', Dialog.Init.bind(Dialog));
-        else window.onload = Dialog.Init.bind(Dialog);
-    })();
-
     Dialog._ShowFrame = function() {
         if (!this._FrameId) return;
         //document.getElementById(this._FrameId).style.display = 'block';
@@ -564,4 +540,4 @@ var Dialogger = (function(te, gs) {
     };
 
     return Dialog;
-})(templateEngine, getStyle);
+})();
