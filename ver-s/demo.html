@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>Dialog - Custom example</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
+        * { background-color: #688; }
+        * * { background-color: #799; }
+        * * * { background-color: #8aa; }
+        * * * * { background-color: #9bb; }
+        * * * * * { background-color: #acc; }
+        * * * * * * { background-color: #bdd; }
+        * * * * * * * { background-color: #cee; }
+        * * * * * * * * { background-color: #dff; }
+        
+        .btns {
+            font-size: 0;
+        }
+        button {
+            margin: 4px;
+            padding: 4px;
+        }
+        .blocks > div {
+            height: 400px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+
+    <script type="text/javascript" src="./lib/dialog.js"></script>
+</head>
+
+<body>
+    <div class="btns">
+        <button id="btn0">fullscreen</button>
+        <button id="btn1">top-left</button>
+        <button id="btn2">top-center</button>
+        <button id="btn3">top-right</button>
+        <button id="btn4">middle-left</button>
+        <button id="btn5">middle-center</button>
+        <button id="btn6">middle-right</button>
+        <button id="btn7">bottom-left</button>
+        <button id="btn8">bottom-center</button>
+        <button id="btn9">bottom-right</button>
+        <button id="btn10">normal</button>
+        <button id="btn11">block</button>
+        <button id="btn12">alert</button>
+        <button id="btn13">middle-belt</button>
+        <button id="btn14">middle-drop</button>
+    </div>
+    <div class="blocks">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div id="dialogframe"></div>
+
+    <script type="text/javascript">
+        //Dialog.Init(null, './lib/dialog.css');
+        Dialog.Init(document.getElementById('dialogframe'), './lib/dialog.css');
+
+        document.getElementById('btn0').onclick = function() {
+            // 全屏
+            Dialog.Create({
+                content: 'This is a ' + this.innerText + ' dialog.',
+                autoShow: 1,
+                fullscreen: 1
+            });
+        };
+        document.getElementById('btn1').onclick = function() {
+            // 左上
+            Dialog.Create({
+                content: 'This is a ' + this.innerText + ' dialog.',
+                autoShow: 1,
+                position: 1,
+                width: '400px',
+                height: '300px'
+            });
+        };
+        document.getElementById('btn2').onclick = function() {
+            // 中上
+            Dialog.Create({
+                content: 'This is a ' + this.innerText + ' dialog.',
+                autoShow: 1,
+                position: 2,
+                width: '400px',
+                height: '300px'
+            });
+        };
+        document.getElementById('btn3').onclick = function() {
+            // 右上
+            Dialog.Create({
+                content: 'This is a ' + this.innerText + ' dialog.',
+                autoShow: 1,
+                position: 3,
+                width: '400px',
+                height: '30%',
+                withBorder: true,
+                ready: function() {
+                    alert('Your dialog is ready. 贴靠边缘的 border 不会被隐藏.');
+                }
+            });
+        };
+        document.getElementById('btn4').onclick = function() {
+            // 左中
+            Dialog.Create({
+                content: 'This is a ' + this.innerText + ' dialog.',
+                autoShow: 1,
+                position: 4,
+                width: '50%',
+                height: '100%'
+            });
+        };
+        document.getElementById('btn5').onclick = function() {
+            // 中中
+            Dialog.Create({
+                content: 'This is a ' + this.innerText + ' dialog.',
+                autoShow: 1,
+                position: 5,
+                width: '400px',
+                height: '300px',
+                close: function() {
+                    alert('You close the dialog.');
+                }
+            });
+        };
+        document.getElementById('btn6').onclick = function() {
+            // 右中
+            Dialog.Create({
+                content: 'This is a ' + this.innerText + ' dialog.',
+                autoShow: 1,
+                position: 6,
+                width: '400px',
+                height: '60%',
+                top: '40%' // 百分比相对于屏幕，dialog 中心到屏幕边缘距离
+            });
+        };
+        document.getElementById('btn7').onclick = function() {
+            // 左下
+            Dialog.Create({
+                content: 'This is a ' + this.innerText + ' dialog.',
+                autoShow: 1,
+                position: 7,
+                width: '400px',
+                height: '300px'
+            });
+        };
+        document.getElementById('btn8').onclick = function() {
+            // 中下
+            Dialog.Create({
+                content: 'This is a ' + this.innerText + ' dialog.',
+                autoShow: 1,
+                position: 8,
+                height: '50%'
+            });
+        };
+        document.getElementById('btn9').onclick = function() {
+            // 右下
+            Dialog.Create({
+                content: 'This is a ' + this.innerText + ' dialog.',
+                autoShow: 1,
+                position: 9,
+                width: '400px',
+                height: '300px'
+            });
+        };
+        document.getElementById('btn10').onclick = function() {
+            // 常驻（不销毁）
+            window.dialog1 = new Dialog({
+                content: 'This is a ' + this.innerText + ' dialog.',
+                stay: 1
+            });
+            dialog1.show();
+        };
+        document.getElementById('btn11').onclick = function() {
+            // 无遮罩，创建即显示，点击不关闭
+            window.dialog2 = Dialog.Create({
+                content: 'This is a ' + this.innerText + ' dialog.',
+                block: 1,
+                autoShow: 1,
+                noMask: 1,
+                zIndex: 100,
+                width: '50%',
+                height: '50%',
+                position: 5
+            });
+        };
+        document.getElementById('btn12').onclick = function() {
+            // 简单提示
+            Dialog.Alert('a pop-up dialog');
+        };
+        document.getElementById('btn13').onclick = function() {
+            // 中间带
+            Dialog.Create({
+                content: 'This is a ' + this.innerText + ' dialog.',
+                autoShow: 1,
+                position: 5,
+                height: '300px'
+            });
+        };
+        document.getElementById('btn14').onclick = function() {
+            // 中上，定 top
+            Dialog.Create({
+                content: 'This is a ' + this.innerText + ' dialog.',
+                autoShow: 1,
+                position: 2,
+                width: '50%',
+                height: '50%',
+                top: 100
+            });
+        };
+    </script>
+</body>
+
+</html>
