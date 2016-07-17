@@ -1,3 +1,7 @@
+# Demo
+
+See demo [here](http://hengwusanren.github.io/Dialogjs.html).
+
 # 创建 Dialog
 
 ## new

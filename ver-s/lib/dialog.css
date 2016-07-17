@@ -1,0 +1,159 @@
+.dialog-wrapper {
+    z-index: 2147483647 !important;
+    position: fixed;
+    /*position: absolute;*/
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    text-align: center;
+    background: none\9;
+    *background: none;
+    _background: none;
+    background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)\9;
+    *background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7);
+    _background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7);
+    background-color: rgb(0,0,0) transparent;
+    background-color: rgba(0,0,0,0.4);
+    zoom: 1;
+    filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr=#7F000000,endcolorstr=#7F000000);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startcolorstr=#7F000000,endcolorstr=#7F000000)";
+    overflow: hidden;
+}
+
+.dialog-wrapper-noOverlay {
+    background-color: rgba(0,0,0,0);
+    filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr=#00000000,endcolorstr=#00000000);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startcolorstr=#00000000,endcolorstr=#00000000)";
+}
+
+.dialog-wrapper * {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+.dialog-docker {
+    position: absolute;
+    visibility: hidden;
+    zoom: 1;
+    overflow: visible;
+}
+
+.dialog-docker-p0 {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.dialog-wrapper .dialog {
+    margin: 0 auto;
+    color: #000;
+    background-color: #fff;
+    border: 10px solid #eee;
+    border-radius: 2px;
+    visibility: visible;
+    zoom: 1;
+    padding: 0px;
+}
+
+.dialog-docker-p1 {
+    top: 0;
+    left: 0;
+}
+.dialog-docker-p2 {
+    top: 0;
+    left: 50%;
+}
+.dialog-docker-p3 {
+    top: 0;
+    right: 0;
+}
+.dialog-docker-p4 {
+    top: 50%;
+    left: 0;
+}
+.dialog-docker-p5 {
+    top: 50%;
+    left: 50%;
+}
+.dialog-docker-p6 {
+    top: 50%;
+    right: 0;
+}
+.dialog-docker-p7 {
+    bottom: 0;
+    left: 0;
+}
+.dialog-docker-p8 {
+    bottom: 0;
+    left: 50%;
+}
+.dialog-docker-p9 {
+    bottom: 0;
+    right: 0;
+}
+
+.dialog-docker-p0 .dialog {
+    margin: 0;
+    border: 0;
+}
+.dialog-docker-p1 .dialog {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.dialog-docker-p2 .dialog {
+    position: absolute;
+    top: 0;
+    left: -50%;
+}
+.dialog-docker-p3 .dialog {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.dialog-docker-p4 .dialog {
+    position: absolute;
+    top: -50%;
+    left: 0;
+}
+.dialog-docker-p5 .dialog {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+}
+.dialog-docker-p6 .dialog {
+    position: absolute;
+    top: -50%;
+    right: 0;
+}
+.dialog-docker-p7 .dialog {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.dialog-docker-p8 .dialog {
+    position: absolute;
+    bottom: 0;
+    left: -50%;
+}
+.dialog-docker-p9 .dialog {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.dialog-header {}
+
+.dialog-btn-close {}
+
+.dialog-content {}
+
+.dialog-btn {}
+
+.dialog-footer {}
