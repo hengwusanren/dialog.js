@@ -1,5 +1,5 @@
 .dialog-wrapper {
-    z-index: 100000000;
+    z-index: 2147483647 !important;
     position: fixed;
     /*position: absolute;*/
     top: 0;
@@ -33,13 +33,14 @@
 .dialog-wrapper * {
     padding: 0;
     margin: 0;
-    border: 0;
+    /*border: 0;*/
 }
 
 .dialog-docker {
     position: absolute;
     visibility: hidden;
     zoom: 1;
+    overflow: visible;
 }
 
 .dialog-docker-p0 {
@@ -49,13 +50,16 @@
     height: 100%;
 }
 
-.dialog {
+.dialog-wrapper .dialog {
     margin: 0 auto;
     color: #000;
     background-color: #fff;
-    border: 32px solid #eee;
+    border: 10px solid #eee;
+    border-radius: 2px;
     visibility: visible;
     zoom: 1;
+    padding: 0px;
+    overflow: auto;
 }
 
 .dialog-docker-p1 {
