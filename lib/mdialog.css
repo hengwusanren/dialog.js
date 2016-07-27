@@ -1,6 +1,7 @@
 .dialog-wrapper {
     z-index: 2147483647 !important;
     position: fixed;
+    /*display: none;*/
     top: 0;
     left: 0;
     width: 100%;
@@ -40,10 +41,12 @@
 
 .dialog-wrapper .dialog {
     margin: 0 auto;
+    /**/
     color: #000;
     background-color: #fff;
-    border: 1px solid #eee;
+    border: 10px solid #eee;
     border-radius: 2px;
+    /**/
     visibility: visible;
     zoom: 1;
     padding: 0px;
@@ -135,4 +138,140 @@
     position: absolute;
     bottom: 0;
     right: 0;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes slideup {
+    from {
+        -webkit-transform:translate(0,100px);
+        -moz-transform:translate(0,100px);
+        -ms-transform:translate(0,100px);
+        -o-transform:translate(0,100px);
+        transform:translate(0,100px);
+    }
+    to {
+        -webkit-transform:translate(0,0);
+        -moz-transform:translate(0,0);
+        -ms-transform:translate(0,0);
+        -o-transform:translate(0,0);
+        transform:translate(0,0);
+    }
+}
+@keyframes slidedown {
+    from {
+        -webkit-transform:translate(0,-100px);
+        -moz-transform:translate(0,-100px);
+        -ms-transform:translate(0,-100px);
+        -o-transform:translate(0,-100px);
+        transform:translate(0,-100px);
+    }
+    to {
+        -webkit-transform:translate(0,0);
+        -moz-transform:translate(0,0);
+        -ms-transform:translate(0,0);
+        -o-transform:translate(0,0);
+        transform:translate(0,0);
+    }
+}
+@keyframes slideright {
+    from {
+        -webkit-transform:translate(-100px,0);
+        -moz-transform:translate(-100px,0);
+        -ms-transform:translate(-100px,0);
+        -o-transform:translate(-100px,0);
+        transform:translate(-100px,0);
+    }
+    to {
+        -webkit-transform:translate(0,0);
+        -moz-transform:translate(0,0);
+        -ms-transform:translate(0,0);
+        -o-transform:translate(0,0);
+        transform:translate(0,0);
+    }
+}
+@keyframes slideleft {
+    from {
+        -webkit-transform:translate(100px,0);
+        -moz-transform:translate(100px,0);
+        -ms-transform:translate(100px,0);
+        -o-transform:translate(100px,0);
+        transform:translate(100px,0);
+    }
+    to {
+        -webkit-transform:translate(0,0);
+        -moz-transform:translate(0,0);
+        -ms-transform:translate(0,0);
+        -o-transform:translate(0,0);
+        transform:translate(0,0);
+    }
+}
+.dialog-wrapper .slide-up, .dialog-wrapper .slide-down, .dialog-wrapper .slide-right, .dialog-wrapper .slide-left {
+    animation-duration: 0.15s;
+    animation-timing-function: ease;
+    animation-iteration-count: 1;
+    -webkit-animation-duration: 0.15s;
+    -webkit-animation-timing-function: ease;
+    -webkit-animation-iteration-count: 1;
+    -moz-animation-duration: 0.15s;
+    -moz-animation-timing-function: ease;
+    -moz-animation-iteration-count: 1;
+    -ms-animation-duration: 0.15s;
+    -ms-animation-timing-function: ease;
+    -ms-animation-iteration-count: 1;
+    -o-animation-duration: 0.15s;
+    -o-animation-timing-function: ease;
+    -o-animation-iteration-count: 1;
+}
+.dialog-wrapper .slide-up {
+    animation-name: slideup;
+    -webkit-animation-name: slideup;
+    -moz-animation-name: slideup;
+    -ms-animation-name: slideup;
+    -o-animation-name: slideup;
+}
+.dialog-wrapper .slide-down {
+    animation-name: slidedown;
+    -webkit-animation-name: slidedown;
+    -moz-animation-name: slidedown;
+    -ms-animation-name: slidedown;
+    -o-animation-name: slidedown;
+}
+.dialog-wrapper .slide-right {
+    animation-name: slideright;
+    -webkit-animation-name: slideright;
+    -moz-animation-name: slideright;
+    -ms-animation-name: slideright;
+    -o-animation-name: slideright;
+}
+.dialog-wrapper .slide-left {
+    animation-name: slideleft;
+    -webkit-animation-name: slideleft;
+    -moz-animation-name: slideleft;
+    -ms-animation-name: slideleft;
+    -o-animation-name: slideleft;
+}
+.dialog-wrapper-fadein {
+    animation-name: fadein;
+    animation-duration: 0.15s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    -webkit-animation-name: fadein;
+    -webkit-animation-duration: 0.15s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: 1;
+    -moz-animation-name: fadein;
+    -moz-animation-duration: 0.15s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: 1;
+    -ms-animation-name: fadein;
+    -ms-animation-duration: 0.15s;
+    -ms-animation-timing-function: linear;
+    -ms-animation-iteration-count: 1;
+    -o-animation-name: fadein;
+    -o-animation-duration: 0.15s;
+    -o-animation-timing-function: linear;
+    -o-animation-iteration-count: 1;
 }
