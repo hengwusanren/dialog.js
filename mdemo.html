@@ -88,6 +88,7 @@
         <button id="btn12">alert</button>
         <button id="btn13">middle-belt</button>
         <button id="btn14">middle-drop</button>
+        <button id="btn15">uncertain size</button>
     </div>
     <div class="blocks">
         <div></div>
@@ -198,6 +199,7 @@
                 autoShow: 1,
                 position: 8,
                 slide: 'up',
+                opacity: 0.2,
                 fade: true,
                 height: '50%'
             });
@@ -256,6 +258,15 @@
                 height: '50%',
                 top: 100,
                 slide: 'down'
+            });
+        };
+        var udlg;
+        document.getElementById('btn15').onclick = function() {
+            // 不确定宽高
+            udlg = Dialog.Create({
+                content: 'This is a ' + this.innerText + ' dialog. <img width="600" height="400" src="http://photos.tuchong.com/242557/f/2493506.jpg">',
+                autoShow: 1,
+                position: 5
             });
         };
     </script>

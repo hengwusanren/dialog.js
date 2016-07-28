@@ -53,6 +53,25 @@
     overflow: auto;
 }
 
+.dialog-wrapper .dialog-unknown {
+    margin: 0 auto;
+    /**/
+    color: #000;
+    background-color: #fff;
+    border: 10px solid #eee;
+    border-radius: 2px;
+    /**/
+    visibility: visible;
+    zoom: 1;
+    padding: 0px;
+    overflow: auto;
+
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
 .dialog-docker-p1 {
     top: 0;
     left: 0;
@@ -255,23 +274,23 @@
 }
 .dialog-wrapper-fadein {
     animation-name: fadein;
-    animation-duration: 0.15s;
+    animation-duration: 0.2s;
     animation-timing-function: linear;
     animation-iteration-count: 1;
     -webkit-animation-name: fadein;
-    -webkit-animation-duration: 0.15s;
+    -webkit-animation-duration: 0.2s;
     -webkit-animation-timing-function: linear;
     -webkit-animation-iteration-count: 1;
     -moz-animation-name: fadein;
-    -moz-animation-duration: 0.15s;
+    -moz-animation-duration: 0.2s;
     -moz-animation-timing-function: linear;
     -moz-animation-iteration-count: 1;
     -ms-animation-name: fadein;
-    -ms-animation-duration: 0.15s;
+    -ms-animation-duration: 0.2s;
     -ms-animation-timing-function: linear;
     -ms-animation-iteration-count: 1;
     -o-animation-name: fadein;
-    -o-animation-duration: 0.15s;
+    -o-animation-duration: 0.2s;
     -o-animation-timing-function: linear;
     -o-animation-iteration-count: 1;
 }
