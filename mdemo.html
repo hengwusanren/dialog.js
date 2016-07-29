@@ -89,6 +89,7 @@
         <button id="btn13">middle-belt</button>
         <button id="btn14">middle-drop</button>
         <button id="btn15">uncertain size</button>
+        <button id="btn16">uncertain size autoShow</button>
     </div>
     <div class="blocks">
         <div></div>
@@ -103,8 +104,12 @@
     <script type="text/javascript">
         document.getElementById('btn0').onclick = function() {
             // 全屏
+            var fsStr = '';
+            for(var i = 0; i < 200; i++) {
+                fsStr += 'This is a fullscreen dialog.';
+            }
             Dialog.Create({
-                content: 'This is a ' + this.innerText + ' dialog.',
+                content: fsStr + '<img style="position:absolute;left:0;bottom:0;" width="120" height="80" src="http://photos.tuchong.com/242557/f/2493506.jpg">',
                 autoShow: 1,
                 fullscreen: 1
             });
@@ -260,14 +265,34 @@
                 slide: 'down'
             });
         };
-        var udlg;
+        var udlg1;
         document.getElementById('btn15').onclick = function() {
             // 不确定宽高
-            udlg = Dialog.Create({
-                content: 'This is a ' + this.innerText + ' dialog. <img width="600" height="400" src="http://photos.tuchong.com/242557/f/2493506.jpg">',
+            udlg1 = Dialog.Create({
+                content: 'This is a ' + this.innerText + ' dialog. <img width="600" height="400" src="http://photos.tuchong.com/242557/f/2493506.jpg">'
+                    + '1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111'
+                    + '<input class="test" type="text">',
                 autoShow: 1,
                 position: 5
             });
+            //udlg.show();
+            udlg1.main.getElementsByTagName('input')[0].onfocus = function() {
+                console.log('udlg1 input focus');
+            };
+            udlg1.main.getElementsByTagName('input')[0].onblur = function() {
+                console.log('udlg1 input blur');
+            };
+        };
+        var udlg2;
+        udlg2 = Dialog.Create({
+            content: 'This is a ' + this.innerText + ' dialog. <img width="600" height="400" src="http://photos.tuchong.com/242557/f/2493506.jpg">'
+                + '1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111'
+                + '<input class="test" type="text">',
+            position: 5
+        });
+        document.getElementById('btn16').onclick = function() {
+            // 不确定宽高
+            udlg2.show();
         };
     </script>
 </body>
