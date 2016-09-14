@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
@@ -31,7 +30,7 @@
     <!-- windows phone 点击无高光 -->
     <meta name="msapplication-tap-highlight" content="no">
 
-    <title>Dialog - Custom example</title>
+    <title>Dialog Demo</title>
 
     <style>
         * {
@@ -66,31 +65,30 @@
         }
     </style>
 
-    <link href="./lib/mdialog.css" rel="stylesheet" type="text/css">
-
-    <script type="text/javascript" src="./lib/mdialog.js"></script>
+    <link rel="stylesheet" type="text/css" href="./dist/mdialog.min.css">
+    <script type="text/javascript" src="./dist/mdialog.min.js"></script>
 </head>
 
 <body>
     <div class="btns">
-        <button id="btn0">fullscreen</button>
-        <button id="btn1">top-left</button>
-        <button id="btn2">top-center</button>
-        <button id="btn3">top-right</button>
-        <button id="btn4">middle-left</button>
-        <button id="btn5">middle-center</button>
-        <button id="btn6">middle-right</button>
-        <button id="btn7">bottom-left</button>
-        <button id="btn8">bottom-center</button>
-        <button id="btn9">bottom-right</button>
-        <button id="btn10">normal</button>
-        <button id="btn11">block</button>
-        <button id="btn12">alert</button>
-        <button id="btn13">middle-belt</button>
-        <button id="btn14">middle-drop</button>
-        <button id="btn15">uncertain size</button>
-        <button id="btn16">uncertain size autoShow</button>
+        <button id="btn0">1. 全屏</button>
+        <button id="btn1">2. 左上</button>
+        <button id="btn2">3. 中上</button>
+        <button id="btn3">4. 右上</button>
+        <button id="btn4">5. 左中</button>
+        <button id="btn5">6. 中</button>
+        <button id="btn6">7. 右中</button>
+        <button id="btn7">8. 左下</button>
+        <button id="btn8">9. 中下</button>
+        <button id="btn9">10. 右下</button>
+        <button id="btn10">11. 阻塞</button>
+        <button id="btn11">12. 中间带</button>
+        <button id="btn12">13. 中间坠落（常驻）</button>
+        <button id="btn13">14. 移动端不定尺寸对话框1</button>
+        <button id="btn14">15. 移动端不定尺寸对话框2（常驻）</button>
     </div>
+
+    <!-- 以下元素为占位 -->
     <div class="blocks">
         <div></div>
         <div style="width:800px"></div>
@@ -99,202 +97,8 @@
         <div></div>
         <div></div>
     </div>
-    <div id="dialogframe"></div>
 
-    <script type="text/javascript">
-        document.getElementById('btn0').onclick = function() {
-            // 全屏
-            var fsStr = '';
-            for(var i = 0; i < 200; i++) {
-                fsStr += 'This is a fullscreen dialog.';
-            }
-            Dialog.Create({
-                content: fsStr + '<img style="position:absolute;left:0;bottom:0;" width="120" height="80" src="http://photos.tuchong.com/242557/f/2493506.jpg">',
-                autoShow: 1,
-                fullscreen: 1
-            });
-        };
-        document.getElementById('btn1').onclick = function() {
-            // 左上
-            Dialog.Create({
-                content: 'This is a ' + this.innerText + ' dialog.',
-                autoShow: 1,
-                position: 1,
-                width: '400px',
-                height: '300px'
-            });
-        };
-        document.getElementById('btn2').onclick = function() {
-            // 中上
-            Dialog.Create({
-                content: 'This is a ' + this.innerText + ' dialog.<div class="test" style="width:2048px;height:1024px;"></div>',
-                autoShow: 1,
-                position: 2,
-                slide: 'down',
-                width: '100%',
-                height: '300px',
-                slide: 'down'
-            });
-        };
-        document.getElementById('btn3').onclick = function() {
-            // 右上
-            Dialog.Create({
-                content: 'This is a ' + this.innerText + ' dialog.',
-                autoShow: 1,
-                position: 3,
-                width: '400px',
-                height: '30%',
-                withBorder: true,
-                ready: function() {
-                    alert('Your dialog is ready. 贴靠边缘的 border 不会被隐藏.');
-                }
-            });
-        };
-        document.getElementById('btn4').onclick = function() {
-            // 左中
-            Dialog.Create({
-                content: 'This is a ' + this.innerText + ' dialog.<div class="test" style="height:2048px"></div>',
-                autoShow: 1,
-                position: 4,
-                slide: 'right',
-                width: '50%',
-                height: '100%'
-            });
-        };
-        document.getElementById('btn5').onclick = function() {
-            // 中中
-            Dialog.Create({
-                content: 'This is a ' + this.innerText + ' dialog.',
-                autoShow: 1,
-                position: 5,
-                width: '400px',
-                height: '300px',
-                close: function() {
-                    alert('You close the dialog.');
-                }
-            });
-        };
-        document.getElementById('btn6').onclick = function() {
-            // 右中
-            Dialog.Create({
-                content: 'This is a ' + this.innerText + ' dialog.',
-                autoShow: 1,
-                position: 6,
-                slide: 'left',
-                width: '400px',
-                height: '60%',
-                top: '40%' // 百分比相对于屏幕，dialog 中心到屏幕边缘距离
-            });
-        };
-        document.getElementById('btn7').onclick = function() {
-            // 左下
-            Dialog.Create({
-                content: 'This is a ' + this.innerText + ' dialog.',
-                autoShow: 1,
-                position: 7,
-                width: '400px',
-                height: '300px'
-            });
-        };
-        document.getElementById('btn8').onclick = function() {
-            // 中下
-            Dialog.Create({
-                content: 'This is a ' + this.innerText + ' dialog.'
-                    + '<input class="test" type="text" style="position:absolute;bottom:0;left:0;">',
-                autoShow: 1,
-                position: 8,
-                slide: 'up',
-                opacity: 0.2,
-                fade: true,
-                height: '50%'
-            });
-        };
-        document.getElementById('btn9').onclick = function() {
-            // 右下
-            Dialog.Create({
-                content: 'This is a ' + this.innerText + ' dialog.',
-                autoShow: 1,
-                position: 9,
-                width: '400px',
-                height: '300px'
-            });
-        };
-        document.getElementById('btn10').onclick = function() {
-            // 常驻（不销毁）
-            window.dialog1 = new Dialog({
-                content: 'This is a ' + this.innerText + ' dialog.',
-                stay: 1
-            });
-            dialog1.show();
-        };
-        document.getElementById('btn11').onclick = function() {
-            // 无遮罩，创建即显示，点击不关闭
-            window.dialog2 = Dialog.Create({
-                content: 'This is a ' + this.innerText + ' dialog.',
-                block: 1,
-                autoShow: 1,
-                noMask: 1,
-                zIndex: 100,
-                width: '50%',
-                height: '50%',
-                position: 5
-            });
-        };
-        document.getElementById('btn12').onclick = function() {
-            // 简单提示
-            Dialog.Alert('a pop-up dialog');
-        };
-        document.getElementById('btn13').onclick = function() {
-            // 中间带
-            Dialog.Create({
-                content: 'This is a ' + this.innerText + ' dialog.',
-                autoShow: 1,
-                position: 5,
-                height: '300px'
-            });
-        };
-        document.getElementById('btn14').onclick = function() {
-            // 中上，定 top
-            Dialog.Create({
-                content: 'This is a ' + this.innerText + ' dialog.',
-                autoShow: 1,
-                position: 2,
-                width: '50%',
-                height: '50%',
-                top: 100,
-                slide: 'down'
-            });
-        };
-        var udlg1;
-        document.getElementById('btn15').onclick = function() {
-            // 不确定宽高
-            udlg1 = Dialog.Create({
-                content: 'This is a ' + this.innerText + ' dialog. <img width="600" height="400" src="http://photos.tuchong.com/242557/f/2493506.jpg">'
-                    + '1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111'
-                    + '<input class="test" type="text">',
-                autoShow: 1,
-                position: 5
-            });
-            //udlg.show();
-            udlg1.main.getElementsByTagName('input')[0].onfocus = function() {
-                console.log('udlg1 input focus');
-            };
-            udlg1.main.getElementsByTagName('input')[0].onblur = function() {
-                console.log('udlg1 input blur');
-            };
-        };
-        var udlg2;
-        udlg2 = Dialog.Create({
-            content: 'This is a ' + this.innerText + ' dialog. <img width="600" height="400" src="http://photos.tuchong.com/242557/f/2493506.jpg">'
-                + '1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111'
-                + '<input class="test" type="text">',
-            position: 5
-        });
-        document.getElementById('btn16').onclick = function() {
-            // 不确定宽高
-            udlg2.show();
-        };
-    </script>
+    <script type="text/javascript" src="./demo.js"></script>
 </body>
 
 </html>

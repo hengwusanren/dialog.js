@@ -1,23 +1,33 @@
 .dialog-wrapper {
     z-index: 2147483647 !important;
     position: fixed;
-    /*display: none;*/
+    /*position: absolute;*/
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    padding: 0;
+    margin: 0;
     border: 0;
     text-align: center;
     background: none\9;
+    *background: none;
+    _background: none;
     background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)\9;
+    *background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7);
+    _background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7);
     background-color: rgb(0,0,0) transparent;
     background-color: rgba(0,0,0,0.4);
     zoom: 1;
+    filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr=#7F000000,endcolorstr=#7F000000);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startcolorstr=#7F000000,endcolorstr=#7F000000)";
     overflow: hidden;
 }
 
 .dialog-wrapper-noOverlay {
     background-color: rgba(0,0,0,0);
+    filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr=#00000000,endcolorstr=#00000000);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startcolorstr=#00000000,endcolorstr=#00000000)";
 }
 
 .dialog-wrapper, .dialog-wrapper * {
@@ -41,12 +51,10 @@
 
 .dialog-wrapper .dialog {
     margin: 0 auto;
-    /**/
     color: #000;
     background-color: #fff;
     border: 10px solid #eee;
     border-radius: 2px;
-    /**/
     visibility: visible;
     zoom: 1;
     padding: 0px;
@@ -55,12 +63,6 @@
 
 .dialog-wrapper .dialog-unknown {
     margin: 0 auto;
-    /**/
-    color: #000;
-    background-color: #fff;
-    border: 10px solid #eee;
-    border-radius: 2px;
-    /**/
     visibility: visible;
     zoom: 1;
     padding: 0px;
@@ -70,6 +72,10 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
 }
 
 .dialog-docker-p1 {
@@ -165,66 +171,66 @@
 }
 @keyframes slideup {
     from {
+        transform:translate(0,100px);
         -webkit-transform:translate(0,100px);
         -moz-transform:translate(0,100px);
         -ms-transform:translate(0,100px);
         -o-transform:translate(0,100px);
-        transform:translate(0,100px);
     }
     to {
+        transform:translate(0,0);
         -webkit-transform:translate(0,0);
         -moz-transform:translate(0,0);
         -ms-transform:translate(0,0);
         -o-transform:translate(0,0);
-        transform:translate(0,0);
     }
 }
 @keyframes slidedown {
     from {
+        transform:translate(0,-100px);
         -webkit-transform:translate(0,-100px);
         -moz-transform:translate(0,-100px);
         -ms-transform:translate(0,-100px);
         -o-transform:translate(0,-100px);
-        transform:translate(0,-100px);
     }
     to {
+        transform:translate(0,0);
         -webkit-transform:translate(0,0);
         -moz-transform:translate(0,0);
         -ms-transform:translate(0,0);
         -o-transform:translate(0,0);
-        transform:translate(0,0);
     }
 }
 @keyframes slideright {
     from {
+        transform:translate(-100px,0);
         -webkit-transform:translate(-100px,0);
         -moz-transform:translate(-100px,0);
         -ms-transform:translate(-100px,0);
         -o-transform:translate(-100px,0);
-        transform:translate(-100px,0);
     }
     to {
+        transform:translate(0,0);
         -webkit-transform:translate(0,0);
         -moz-transform:translate(0,0);
         -ms-transform:translate(0,0);
         -o-transform:translate(0,0);
-        transform:translate(0,0);
     }
 }
 @keyframes slideleft {
     from {
+        transform:translate(100px,0);
         -webkit-transform:translate(100px,0);
         -moz-transform:translate(100px,0);
         -ms-transform:translate(100px,0);
         -o-transform:translate(100px,0);
-        transform:translate(100px,0);
     }
     to {
+        transform:translate(0,0);
         -webkit-transform:translate(0,0);
         -moz-transform:translate(0,0);
         -ms-transform:translate(0,0);
         -o-transform:translate(0,0);
-        transform:translate(0,0);
     }
 }
 .dialog-wrapper .slide-up, .dialog-wrapper .slide-down, .dialog-wrapper .slide-right, .dialog-wrapper .slide-left {
